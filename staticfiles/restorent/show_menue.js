@@ -1,8 +1,6 @@
 const table_name = document.getElementById('table-name').innerText;
 let temp = localStorage.getItem(table_name)
 
-let restorent_id = document.getElementById('restorent-id').innerText;
-
 if (temp == null) {
     localStorage.setItem(table_name, '{}');
     localStorage.setItem('restorent_id', restorent_id);
