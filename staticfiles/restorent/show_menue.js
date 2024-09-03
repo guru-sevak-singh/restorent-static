@@ -13,7 +13,8 @@ else {
         showOldData()
     }
     else {
-        localStorage.setItem(table_name, '{}')
+        localStorage.setItem(table_name, '{}');
+        localStorage.setItem('restorent_id', restorent_id);
     }
 }
 
