@@ -83,13 +83,13 @@ const order_id = document.getElementById('order-id').innerText
 
 
 document.getElementById('food-delivery-pending').addEventListener('click', () => {
-    let url = `/update_order_status/${order_id}/false`;
+    let url = `/update_order_status/${order_id}/false/`;
     getRequest(url);
     document.getElementById('delivery-status').innerHTML = '<i class="fa fas fa-clock text-danger mb-0 me-1"></i>Delivery Pending';
 })
 
 document.getElementById('food-delivery-done').addEventListener('click', () => {
-    let url = `/update_order_status/${order_id}/true`;
+    let url = `/update_order_status/${order_id}/true/`;
     getRequest(url);
     document.getElementById('delivery-status').innerHTML = '<i class="fa fas fa-check-circle text-success mb-0 me-1"></i>Delivery Done';
 })
