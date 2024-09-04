@@ -2,8 +2,6 @@
 const order_pk = JSON.parse(document.getElementById('order-pk').textContent)
 const transaction_id = JSON.parse(document.getElementById('transaction_id').textContent)
 
-console.log(order_pk, transaction_id)
-
 // create websocket url
 const websocket_url = `wss://${window.location.host}/ws/payment_data/`
 
@@ -18,7 +16,7 @@ socket.onmessage = (e) => {
 
     if (payment_data.work === 'add_new_payment') {
         if (payment_data.order_id == order_pk) {
-            window.open('/payment_added_successfully', '_self')
+            window.open(`/payment_added_successfully/${order_pk}`, '_self')
         }
     }
 
