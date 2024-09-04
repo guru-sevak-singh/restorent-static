@@ -25,7 +25,6 @@ function ChangeStatus() {
         'action': 'update_table_status'
     }
 
-    console.log('going to send the socket request...');
     socket.send(JSON.stringify(data))
 }
 
@@ -163,91 +162,71 @@ function UpdateNewData(data) {
     order_list.innerHTML = order_html;
 }
 
-// // Function to Play Notification Sound
-// function playAudio() {
-//     const audio = new Audio('/static/sound/notification.wav');
-//     audio.play().catch(error => {
-//         console.error('Error in Playing audio', error)
-//     })
+// Function to Play Notification Sound
+function playAudio() {
+    const audio = new Audio('/static/sound/notification.wav');
+    audio.play().catch(error => {
+        console.error('Error in Playing audio', error)
+    })
+}
+
+function removeTable(complete_table_name) {
+    localStorage.removeItem(complete_table_name);
+}
+
+// // Define the Queue class
+// class Queue {
+//     constructor() {
+//         this.items = [];
+//     }
+
+//     enqueue(element) {
+//         this.items.push(element);
+//     }
+
+//     dequeue() {
+//         if (this.isEmpty()) {
+//             return undefined;
+//         }
+//         return this.items.shift();
+//     }
+
+//     isEmpty() {
+//         return this.items.length === 0;
+//     }
 // }
 
-function openUrl(a) {
-    let table_area = a.parentElement.parentElement.parentElement.parentElement.id;
-    let table_name = a.getElementsByTagName('h5')[0].innerText;
+// // Initialize a queue instance
+// var queue = new Queue();
 
-    try {
-        table_name = table_name.replaceAll('Table ', '')
-        complete_table_name = `${table_area}-${table_name}`
-        let big_box = a.parentElement.parentElement;
-        let status = big_box.getElementsByClassName('table-status')[0].classList;
+// // Function to create and enqueue audio elements
+// function playAudio() {
+//     var audio = document.createElement('audio');
+//     var source = document.createElement('source');
+//     source.src = "https://www.dopagentsoftware.com/assets/sound/notification-v2.mp3";
+//     audio.appendChild(source);
 
-        if (status.contains('bg-success')) {
-            localStorage.removeItem(complete_table_name);
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
+//     // Append the audio element to the body (or any other container)
+//     document.body.appendChild(audio);
 
-    url = a.id;
-    window.open(url, '_self');
+//     // Enqueue the audio element for playback
+//     queue.enqueue(audio);
+// }
 
-}
+// // Function to play audio notifications from the queue
+// setInterval(function () {
+//     var audio = queue.dequeue();
+//     if (audio !== undefined) {
+//         audio.play().catch(function (error) {
+//             console.error("Audio play failed:", error);
+//         });
 
+//         // Remove the audio element after playback
+//         setTimeout(function () {
+//             audio.remove();
+//         }, 1000); // Duration of sound clip (adjust as necessary)
+//     }
+// }, 300); // Check the queue every 300ms
 
-// Define the Queue class
-class Queue {
-    constructor() {
-        this.items = [];
-    }
-
-    enqueue(element) {
-        this.items.push(element);
-    }
-
-    dequeue() {
-        if (this.isEmpty()) {
-            return undefined;
-        }
-        return this.items.shift();
-    }
-
-    isEmpty() {
-        return this.items.length === 0;
-    }
-}
-
-// Initialize a queue instance
-var queue = new Queue();
-
-// Function to create and enqueue audio elements
-function playAudio() {
-    var audio = document.createElement('audio');
-    var source = document.createElement('source');
-    source.src = "https://www.dopagentsoftware.com/assets/sound/notification-v2.mp3";
-    audio.appendChild(source);
-
-    // Append the audio element to the body (or any other container)
-    document.body.appendChild(audio);
-
-    // Enqueue the audio element for playback
-    queue.enqueue(audio);
-}
-
-// Function to play audio notifications from the queue
-setInterval(function () {
-    var audio = queue.dequeue();
-    if (audio !== undefined) {
-        audio.play().catch(function (error) {
-            console.error("Audio play failed:", error);
-        });
-
-        // Remove the audio element after playback
-        setTimeout(function () {
-            audio.remove();
-        }, 1000); // Duration of sound clip (adjust as necessary)
-    }
-}, 300); // Check the queue every 300ms
-
-// Example usage: Call playAudio() to add audio to the queue
-playAudio(); // Call this whenever you want to play a notification sound
+// // Example usage: Call playAudio() to add audio to the queue
+// playAudio(); // Call this whenever you want to play a notification sound
