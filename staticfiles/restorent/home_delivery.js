@@ -25,6 +25,15 @@ window.onload = function () {
     }, 1000); // 2000 milisecond means 1 second
 };
 
+function ShowOldOrders() {
+    invalids = document.getElementsByClassName('is-valid');
+    if (invalids.length == 3) {
+        button = document.getElementById('show-old-orders')
+        button.type = 'submit';
+        button.click()
+    }
+}
+
 function submitForm() {
     invalids = document.getElementsByClassName('is-valid');
     if (invalids.length == 3) {
