@@ -164,7 +164,7 @@ function UpdateNewData(data) {
 
 // Function to Play Notification Sound
 function playAudio() {
-    const audio = new Audio('/static/sound/notification.wav');
+    const audio = new Audio('https://guru-sevak-singh.github.io/restorent-static/staticfiles/sound/notification.wav');
     audio.play().catch(error => {
         console.error('Error in Playing audio', error)
     })
