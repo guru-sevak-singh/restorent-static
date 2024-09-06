@@ -67,7 +67,7 @@ function UpdateNewData(data) {
                             Busy
                         </div>
                         <div class="p-3">
-                            <a href="/order_profile/${data.pk}">
+                            <a href="/show_menue/${data.pk}">
                                 <h5 class="mb-3">${data.table_name}</h5>
                                 <div class="order-list">
                                     <p class="order-status mb-2">
