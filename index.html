@@ -3,30 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android Share</title>
+    <title>Share QR Code</title>
 </head>
 <body>
 
-<button id="shareButton">Share This Page</button>
+    <h2>Share QR Code using UPI App</h2>
 
-<script>
-    document.getElementById('shareButton').addEventListener('click', async () => {
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: 'My Website',
-                    text: 'Check out this website!',
-                    url: window.location.href, // current page URL
-                });
-                console.log('Successfully shared');
-            } catch (error) {
-                console.error('Error sharing:', error);
+    <!-- QR Code Image -->
+    <img id="qrCode" src="your-qr-code-url.png" alt="UPI QR Code" style="width:200px;height:200px;">
+
+    <!-- Share Button -->
+    <button id="shareBtn">Share QR Code</button>
+
+    <script>
+        const shareBtn = document.getElementById('shareBtn');
+        const qrCodeUrl = document.getElementById('qrCode').src;
+
+        shareBtn.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'UPI QR Code',
+                        text: 'Scan this UPI QR code for payment',
+                        files: [
+                            new File([await fetch(qrCodeUrl).then(res => res.blob())], 'upi-qr-code.png', { type: 'image/png' })
+                        ]
+                    });
+                    console.log('QR Code shared successfully');
+                } catch (err) {
+                    console.error('Error sharing QR code:', err);
+                }
+            } else {
+                alert('Web Share API is not supported in your browser.');
             }
-        } else {
-            alert('Web Share API is not supported in this browser.');
-        }
-    });
-</script>
+        });
+    </script>
 
 </body>
 </html>
