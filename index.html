@@ -1,1 +1,32 @@
-<h1>Its Home page...</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Share</title>
+</head>
+<body>
+
+<button id="shareButton">Share This Page</button>
+
+<script>
+    document.getElementById('shareButton').addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'My Website',
+                    text: 'Check out this website!',
+                    url: window.location.href, // current page URL
+                });
+                console.log('Successfully shared');
+            } catch (error) {
+                console.error('Error sharing:', error);
+            }
+        } else {
+            alert('Web Share API is not supported in this browser.');
+        }
+    });
+</script>
+
+</body>
+</html>
