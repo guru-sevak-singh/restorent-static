@@ -225,6 +225,6 @@ function createOrder() {
 
     cart_data = localStorage.getItem(table_name);
     document.getElementById('order_data').value = cart_data;
-    // localStorage.removeItem(table_name)
+    localStorage.removeItem(table_name)
     document.getElementById('order_submit').click()
 }
