@@ -3,7 +3,7 @@ const table_name = document.getElementById('table-name').innerText;
 if (document.getElementById('all-selected-orders') != undefined){
     let all_selected_items = document.getElementById('all-selected-orders').innerText;
     localStorage.setItem(table_name, all_selected_items);
-    alert('kuch data purana h');
+    
 }
 
 let temp = localStorage.getItem(table_name)
