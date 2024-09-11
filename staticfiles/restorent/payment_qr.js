@@ -59,3 +59,21 @@ function startCountdown() {
 
 // Start the countdown immediately
 startCountdown();
+
+document.getElementById('copyBtn').addEventListener('click', function () {
+    const popup = document.getElementById('popupText');
+
+    textToCopy = document.getElementById('copyBtn').innerText;
+    navigator.clipboard.writeText(textToCopy).then(function() {
+        // Show popup when copy is successful
+        popup.classList.add('show');
+        
+        // Hide popup after 3 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 3000);
+    }).catch(function(error) {
+        console.error('Copy failed', error);
+    });
+    
+});
