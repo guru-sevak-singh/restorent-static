@@ -7,6 +7,18 @@ const websoclet_url = `wss://${window.location.host}/ws/dashboard_data/`
 // creating socket
 const socket = new WebSocket(websoclet_url)
 
+function ShowCountStatus(){
+    let all_seats = document.getElementsByClassName('seat').length;
+
+    let orders = document.getElementsByClassName('orderreceived').length;
+    document.getElementById('order-seat').innerText = String(orders - 1);
+    let payments = document.getElementsByClassName('paymentreceived').length;
+    document.getElementById('paymentreceived-seat').innerText = String(payments - 1)
+
+    document.getElementById('available-seat').innerText = String(all_seats - orders - payments - 1)
+}
+
+
 // Function which show any data come from socekt
 socket.onmessage = (e) => {
     const data = JSON.parse(e.data);
@@ -95,5 +107,7 @@ function UpdateNewData(data) {
     catch(error){
         console.log(error)
     }
-
+    ShowCountStatus();
 }
+
+ShowCountStatus()
