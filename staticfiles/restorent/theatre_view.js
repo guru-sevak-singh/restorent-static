@@ -2,7 +2,7 @@
 const menue_url = '/show_menue/'
 
 // creating web socket url
-const websoclet_url = `ws://${window.location.host}/ws/dashboard_data/`
+const websoclet_url = `wss://${window.location.host}/ws/dashboard_data/`
 
 // creating socket
 const socket = new WebSocket(websoclet_url)
