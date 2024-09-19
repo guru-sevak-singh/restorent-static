@@ -2,7 +2,7 @@
 const menue_url = '/show_menue/'
 
 // creating web socket url
-const websoclet_url = `wss://${window.location.host}/ws/dashboard_data/`
+const websoclet_url = `ws://${window.location.host}/ws/dashboard_data/`
 
 // creating socket
 const socket = new WebSocket(websoclet_url)
@@ -17,7 +17,6 @@ function ShowCountStatus(){
 
     document.getElementById('available-seat').innerText = String(all_seats - orders - payments - 1)
 }
-
 
 // Function which show any data come from socekt
 socket.onmessage = (e) => {
@@ -107,7 +106,8 @@ function UpdateNewData(data) {
     catch(error){
         console.log(error)
     }
-    ShowCountStatus();
+
+    ShowCountStatus()
 }
 
 ShowCountStatus()
